@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Stroies
+{% endblock title %}
+
+{% block body %}
+
+{%block content%} 
+
+
+<style>
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+.msg {
+        height: 100px;
+        width: 544px;
+        background-color: green;
+        /* background-color: powderblue; */
+    }
+
+    #bkgrd {
+    position:absolute;
+    padding-top: 0px;
+    left: 0;
+    width:100%;
+    height:90%;
+}
+</style>
+
+{% if url %}
+<div>
+
+    <iframe src={{url}}  id="bkgrd" ></iframe>
+</div>
+{% else %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0 py-0" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/womens1.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Do your part, care for your heart.</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/static/womens2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>The problem with heart disease is that the first symptom is often fatal.</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/static/womens3.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div> <br>
+
+
+    <!-- <video name='demo' controls  width='80%' height='40%'>   
+        <source src="static/video0.mp4" type="video/mp4"></source>
+    </video><br> -->
+
+
+    <div class="container">
+    <form method="POST" enctype="multipart/form-data"> <br> <br>
+        <h3>Make yourself heard</h3>
+        {%csrf_token%}
+        <p> Feel free to upload videos, pictures, stories which will inspire others</p><input type="file" name="document">
+
+        <button type="submit" class="btn btn-secondary">Upload File</button>
+    </form>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0 py-0" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    </div>
+
+
+<form method="POST" action="/stories">
+    {%csrf_token%}
+    <div class="container my-5">
+        <h1 class="my-5 text-center"> Inspiring stories of survivors </h1>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img src="static/video_cache1.PNG" class="d-block w-100" alt="..." width="100" height="225">
+                    <div class="card-body">
+                      <p class="card-text">Heart Disease: The Signs and Symptoms You Shouldn't Ignore</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <input name="video_1" value="http://www.youtube.com/embed/mOitt-QJxt0" style="display: none;">
+                          <button name="video1" type="submit" class="btn btn-secondary">Watch</button>
+                        </div>
+                        <!-- <small class="text-muted">9 mins</small> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="static/video_cache2.PNG" class="d-block w-100" alt="..." width="100" height="225">
+                        <div class="card-body">
+                          <p class="card-text">Margaret, Heart Attack at age 35 <br> &zwnj; </p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <input name="video_2" value="http://www.youtube.com/embed/hyviONd8I5k" style="display: none;">
+                              <button name="video2" type="submit" class="btn btn-secondary">Watch</button>
+                            </div>
+                            <!-- <small class="text-muted">9 mins</small> -->
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="static/video_cache3.PNG" class="d-block w-100" alt="..." width="100" height="225">
+                        <div class="card-body">
+                          <p class="card-text">Younger people can suffer from heart failure, too</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <input name="video_3" value="http://www.youtube.com/embed/33i1Iq5iUUg" style="display: none;">
+                              <button name="video3" type="submit" class="btn btn-secondary">Watch</button>
+                            </div>
+                            <!-- <small class="text-muted">9 mins</small> -->
+                          </div>
+                        </div>
+                      </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="static/video_cache4.PNG" class="d-block w-100" alt="..." width="100" height="225">
+                        <div class="card-body">
+                          <p class="card-text">Advice from young people living with a heart condition</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <input name="video_4" value="http://www.youtube.com/embed/h39QXDDWhBo" style="display: none;">
+                              <button name="video4" type="submit" class="btn btn-secondary">Watch</button>
+                            </div>
+                            <!-- <small class="text-muted">9 mins</small> -->
+                          </div>
+                        </div>
+                      </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="static/video_cache5.PNG" class="d-block w-100" alt="..." width="100" height="225">
+                    <div class="card-body">
+                      <p class="card-text">Health Literacy <br> &zwnj;</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <input name="video_5" value="http://www.youtube.com/embed/GnFAgr5RNow" style="display: none;">
+                          <button name="video5" type="submit" class="btn btn-secondary">Watch</button>
+                        </div>
+                        <!-- <small class="text-muted">9 mins</small> -->
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img src="/static/9_.jpg" class="d-block w-100" alt="..." width="100" height="225">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor, sit amet cons</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img src="/static/10.jpg" class="d-block w-100" alt="..." width="100" height="225">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor, sit amet cons</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img src="/static/11.jpg" class="d-block w-100" alt="..." width="100" height="225">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor, sit amet cons</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img src="/static/12_.jpg" class="d-block w-100" alt="..." width="100" height="225">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor, sit amet cons.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    
+ <br><br><br><br><br>
+
+ <div class="footer-basic">
+     <footer>
+         <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+         <ul class="list-inline">
+             <li class="list-inline-item"><a href="/">Cardi-Otters</a></li>
+             <li class="list-inline-item"><a href="about_us">About</a></li>
+             <li class="list-inline-item"><a href="#">Terms</a></li>
+             <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+         </ul>
+         <p class="copyright">Cardi-Otters © 2018</p>
+     </footer>
+ </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+ 
+ <!-- Footer  -->
+{% endif %}
+
+<!-- Footer  -->
+
+
+{%endblock content%}
+{% endblock body %}
